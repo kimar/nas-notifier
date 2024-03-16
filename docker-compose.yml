@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  app:
+    image: ghcr.io/kimar/nas-notifier:latest
+    ports:
+      - ${PORT:-8080}:${PORT:-8080}
+    volumes:
+      - ./.env:/.env:ro
