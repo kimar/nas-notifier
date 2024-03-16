@@ -7,7 +7,7 @@ from dotenv import dotenv_values
 config = dotenv_values(".env")
 
 host = config.get('HOST') or '0.0.0.0'
-port = config.get('PORT') or 8080
+port = int(config.get('PORT') or 3000)
 title = config.get('NOTIFICATION_TITLE') or 'nas-notifier'
 
 class requestHandler(BaseHTTPRequestHandler):
