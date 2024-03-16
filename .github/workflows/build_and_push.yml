@@ -8,10 +8,17 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps:
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: latest
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
           platforms: ${{ matrix.platforms }}
           push: true
+          tags: ${{ steps.meta.outputs.tags }}
