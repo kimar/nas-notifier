@@ -1,10 +1,14 @@
+import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 
 import requests
 from dotenv import dotenv_values
 
-config = dotenv_values(".env")
+config = {
+    **dotenv_values(".env"),
+    **os.environ,
+}
 
 host = config.get('HOST') or '0.0.0.0'
 port = int(config.get('PORT') or 3000)
